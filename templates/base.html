@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <title>Vertical Navbar with Icons</title>
+    <style>
+        body {
+            background-color: #fff;
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            
+        }
+
+        .navbar {
+            background-color: #007bff;
+            height: 100vh;
+            width: 80px;
+            padding-top: 20px;
+            position: fixed;
+            box-shadow: 1px 0 10px rgba(0, 0, 0, 0.1);
+            transition: width 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .navbar:hover {
+            width: 200px;
+        }
+
+        .navbar-brand {
+            color: #fff;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 15px; /* Added margin to adjust spacing */
+        }
+
+        .nav-link {
+            color: #fff;
+            font-size: 1.2rem;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            margin-top: 15px;
+            padding-bottom: 10px;
+        }
+
+        .nav-link i {
+            margin-right: 5px; /* Adjusted margin for spacing */
+        }
+
+        .nav-link span {
+            display: none;
+        }
+
+        .navbar:hover .nav-link span {
+            display: inline;
+            margin-left: 5px; /* Adjusted margin for spacing */
+        }
+
+        .active {
+            background-color: #0056b3;
+        }
+
+        .logout-btn {
+            margin-top: auto; /* Push the button to the bottom */
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .logout-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .container-fluid {
+            margin-left: 80px; 
+            padding: 20px;
+            transition: padding-left 0.3s;
+            width: calc(100vw - 80px); /* Added transition for smooth effect */
+        }
+
+        .navbar:hover + .container-fluid {
+            margin-left: 200px; /* Adjusted margin when the navbar is expanded */
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    
+    <ul class="nav flex-column">
+        <li class="nav-item">
+            <a class="nav-link active" href="#">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'homePage' %}">
+                <i class="fa-solid fa-scroll"></i>
+                <span>Scripts</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'uploadFile' %}">
+                <i class="fa-solid fa-file-import"></i>
+                <span>Summarizer</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">
+                <i class="fas fa-headset"></i>
+                <span>Voice Input</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+            </a>
+        </li>
+        
+        <li class="nav-item" style="position:absolute;bottom:20px">
+            <a class="nav-link" href="{% url 'logoutUser' %}">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </a>
+        </li>
+        
+    </ul>
+    
+    
+</nav>
+
+<div class="container-fluid">
+    {% block content %}
+    {% endblock %}
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
+
+</body>
+</html>

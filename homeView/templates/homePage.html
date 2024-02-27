@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if request.user.is_authenticated %}
+<p>Hi {{request.user.username}}</p>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th scope="col">Script Name</th>
+            
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for record in script %}
+        <tr>
+            
+            <td>
+                {{record.scriptName}}
+                <a href="#" data-bs-toggle="modal" data-bs-target="#scriptDetailsModal{{ record.id }}">
+                    <i class="fas fa-info-circle"></i>
+                </a>
+            </td>
+            
+            <td>
+                <button class="btn btn-success">Run</button>
+                <button class="btn btn-danger">Delete</button>
+            </td>
+        </tr>
+        <div class="modal fade" id="scriptDetailsModal{{ record.id }}" tabindex="-1" aria-labelledby="scriptDetailsModalLabel{{ record.id }}" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="scriptDetailsModalLabel">Script Details</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Use Django template syntax to include dynamic content -->
+                        <h6>{{ record.scriptName }}</h6>
+                        <p>Description: {{ record.scriptDescription }}</p>
+                        
+                        <!-- Add more details as needed -->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        <!-- Add more rows as needed -->
+    </tbody>
+</table>
+
+{% endif %}
+{% endblock %}
